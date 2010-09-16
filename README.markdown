@@ -11,8 +11,10 @@ RSpec matchers to spec your User models to make sure they apply certain Role str
 Teaser:
 <pre>
   root_dir.should have_model :user do |clazz|
-    clazz.should have_valid_roles :user, :admin
-    clazz.should have_role_strategy :admin_flag
+    clazz.should have_valid_roles :admin, :guest
+    clazz.should have_roles_strategy :one_role
+    clazz.should have_roles_orm :active_record
+    clazz.should have_roles_class :role
   end  
 </pre>
 
@@ -25,8 +27,10 @@ Full RSpec example:
 
     it "should have valid roles :user and :admin and the role strategy :admin_flag" do      
       root_dir.should have_model :user do |clazz|
-        clazz.should have_valid_roles :user, :admin
-        clazz.should have_role_strategy :admin_flag
+        clazz.should have_valid_roles :admin, :guest
+        clazz.should have_roles_strategy :one_role, :default
+        clazz.should have_roles_orm :active_record
+        clazz.should have_roles_class :role
       end
     end
   end  
